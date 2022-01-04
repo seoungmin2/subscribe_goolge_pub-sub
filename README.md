@@ -1,1 +1,1 @@
-# subscribe_goolge_pub-sub
+# subscribe_google_pub-sub
