@@ -9,7 +9,7 @@ class SubscribeDto {
     var version: String? = null
     var packageName: String? = null
     var eventTimeMillis: Long? = null
-    var subscriptionNotification: NotificationDto? = null
+    lateinit var subscriptionNotification: NotificationDto
     var testNotification: TestNotificationDto? = null
 
 }

@@ -6,7 +6,9 @@ import org.modelmapper.ModelMapper
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.integration.annotation.ServiceActivator
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -25,8 +27,11 @@ class AosSubscribeController {
 
         val subscribe = modelMapper.map(payload, SubscribeDto::class.java)
 
-        subscribeService.saveSubscribeLog(payload)
+        val subscribeId = subscribeService.saveSubscribeLog(payload)
+
+        subscribeService.getGoogleSubscribe(subscribe)
+
+        subscribeService.updateStatePayload(subscribeId!!)
 
     }
-
 }

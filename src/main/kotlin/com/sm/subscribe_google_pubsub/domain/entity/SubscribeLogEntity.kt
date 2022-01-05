@@ -1,23 +1,20 @@
 package com.sm.subscribe_google_pubsub.domain.entity
 
-import com.sm.subscribe_google_pubsub.enum.StateEnum
+import com.querydsl.core.annotations.PropertyType
+import com.querydsl.core.annotations.QueryType
 import lombok.Data
-import org.hibernate.annotations.ColumnDefault
 import javax.persistence.*
 
 @Entity
-@Table(name = "SUBSCRIBE_LOG")
+@Table(name = "PAYLOAD")
 @Data
-class SubscribeLogEntity {
+class SubscribeLogEntity(payload: String, state: StateEnum) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
-    var payload: String? = null
-    var state: StateEnum? = null
-
-    constructor(payload: String, state: StateEnum) {
-        this.payload = payload
-        this.state = state
-    }
+    var payload: String? = payload
+    @Enumerated(EnumType.ORDINAL)
+    @QueryType(PropertyType.ENUM)
+    var state: StateEnum? = state
 
 }
